@@ -1,0 +1,39 @@
+version: '3.9'
+networks:
+  sub01:
+    external: true
+services:
+  app:
+    image: bp6rz/bagstudio:latest
+#    stdin_open: true # docker run -i
+#    tty: true        # docker run -t
+    container_name: rzstudio
+    #command: baswqh -c "service elasticsearch start"
+#    privileged: true
+    ports:
+    #  - "22221:22"
+      - "8787:8787"
+    #volumes:
+      #- /dt01/docker-volumes/rzstudio/home:/home2
+#      - /dt01/docker-volumes/devine/opt:/opt
+#      - /dt01/docker-volumes/devine/devel:/devel
+#      - /dt01/docker-volumes/devine/etc/hostname:/etc/hostname
+#      - /dt01/docker-volumes/devine/etc/hosts:/etc/hosts
+#      - /dt01/docker-volumes/devine/etc/samba:/etc/samba
+#      - /dt01/docker-volumes/devine/etc/supervisord:/etc/supervisord
+#      - /dt01/docker-volumes/devine/etc/init.d:/etc/init.d
+#      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - HOSTNAME=rzstuio
+      - PASSWORD=password
+    restart: always
+    networks:
+      - sub01
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 2048M
+        reservations:
+          cpus: '0.25'
+          memory: 1024M
